@@ -123,4 +123,4 @@ model.fit(X_train, y_train, batch_size=batch_size, epochs=epochs, validation_spl
 
 test = model.evaluate(X_test, y_test, batch_size=32)
 
-print(test)
+print("\n\nTest Acc: %f"test[1])
