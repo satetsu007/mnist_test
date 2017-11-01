@@ -9,7 +9,7 @@ epochs = 10
 
 print("Load Data.")
 
-X_train, X_test, y_train, y_test = load_data(num_pic)
+X_train, X_test, y_train, y_test = load_data(num_pic, mode="cnn")
 
 n_in = X_train.shape[-1]
 n_out = y_train.shape[-1]
