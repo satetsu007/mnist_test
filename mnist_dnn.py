@@ -9,7 +9,7 @@ from PIL import Image
 import cv2
 import random
 
-num_pic = 5
+num_pic = 1
 batch_size = 32
 epochs = 10
 
@@ -121,4 +121,6 @@ model.add(Activation('softmax'))
 model.compile(loss='categorical_crossentropy', optimizer="Adam", metrics=['accuracy'])
 model.fit(X_train, y_train, batch_size=batch_size, epochs=epochs, validation_split=0.1,)
 
-model.evaluate(X_test, y_test, batch_size=32)
+test = model.evaluate(X_test, y_test, batch_size=32)
+
+print(test)
