@@ -1,5 +1,5 @@
 from keras.models import Sequential
-from keras.layers import Dense, Activation, Dropout
+from keras.layers import Dense, Conv2D, MaxPooling2D, Flatten, Dropout
 from load_data import load_data
 
 # 各種パラメータ設定
@@ -13,19 +13,21 @@ X_train, X_test, y_train, y_test = load_data(num_pic, mode="cnn")
 
 n_in = X_train.shape[-1]
 n_out = y_train.shape[-1]
+input_shape = (num_pic, 28, 28)
 
 print("Define Model.")
 
 model = Sequential()
-model.add(Dense(512, input_dim=num_pic*28*28))
-model.add(Activation('sigmoid'))
-model.add(Dense(512))
-model.add(Activation('sigmoid'))
-model.add(Dense(512))
-model.add(Activation('sigmoid'))
+model.add(Conv2D(32, kernel_size=(3, 3),
+                 activation='relu',
+                 input_shape=input_shape))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+model.add(Flatten())
+model.add(Dense(128, activation='relu'))
 model.add(Dropout(0.5))
-model.add(Dense(10))
-model.add(Activation('softmax'))
+model.add(Dense(n_out, activation='softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer="Adam", metrics=['accuracy'])
 
