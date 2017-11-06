@@ -27,6 +27,7 @@ def set_num_array(num_file_list, num_str, num_pic, mode="dnn"):
     if mode=="dnn":
         num_array = []
         for num_file in num_file_list:
+            num_file = [num for num in num_file if num[-4:] == ".jpg"]
             tmp = []
             if len(num_file) < num_pic:
                 for num in num_file:
@@ -43,6 +44,7 @@ def set_num_array(num_file_list, num_str, num_pic, mode="dnn"):
     elif mode=="cnn":
         num_array = []
         for num_file in num_file_list:
+            num_file = [num for num in num_file if num[-4:] == ".jpg"]
             tmp = []
             if len(num_file) < num_pic:
                 for num in num_file:
